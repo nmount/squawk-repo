@@ -1,7 +1,7 @@
 # squawk-repo
 
 
-MVPs
+MVP
 1. Login
 Create login and security features
 

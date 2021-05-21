@@ -1,9 +1,9 @@
 # squawk-repo
 
 
-MVP
+MVPs
 1. Login
-Create login and security features
+-Create login and security features
 
 2. Comic Page
 Main Page

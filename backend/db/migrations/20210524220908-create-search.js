@@ -1,25 +1,14 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('FoodPhotos', {
+    return queryInterface.createTable('Searches', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-        references: { model: "Users" }
-      },
-      food_id: {
-        type: Sequelize.INTEGER,
-        references: { model: "Foods" }
-      },
-      imageUrl: {
-        type: Sequelize.STRING
-      },
-      caption: {
+      keywords: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -33,6 +22,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('FoodPhotos');
+    return queryInterface.dropTable('Searches');
   }
 };

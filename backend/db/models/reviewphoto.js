@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   ReviewPhoto.associate = function(models) {
     // associations can be defined here
+    ReviewPhoto.belongsTo(models.User, {foreignKey: 'user_id'});
+    ReviewPhoto.belongsTo(models.Review, {foreignKey: 'review_id'});
   };
   return ReviewPhoto;
 };

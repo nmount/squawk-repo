@@ -6,6 +6,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Food.associate = function(models) {
     // associations can be defined here
+    const columnMapping = {
+      through: 'Categories',
+      foreignKey: 'food_id',
+      otherKey: 'search_id'
+    }
+    Food.belongsToMany( models.Search, columnMapping);
+    Food.hasMany(models.FoodPhoto, { foreignKey: 'food_id'});
+    Food.hasMany(models.Review, {foreignKey: 'food_id'});
   };
   return Food;
 };

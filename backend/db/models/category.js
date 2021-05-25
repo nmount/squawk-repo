@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Category = sequelize.define('Category', {
+  const Category = sequelize.define('Categories', {
     food_id: DataTypes.INTEGER,
     search_id: DataTypes.INTEGER
   }, {});

@@ -13,7 +13,7 @@ module.exports = {
       }], {});
     */
     return queryInterface.bulkInsert('FoodPhotos', [
-      {user_id: 1, food_id:1, caption:'Hawaiian Pizza', imageUrl: 'https://www.jessicagavin.com/wp-content/uploads/2020/07/hawaiian-pizza-16-1200.jpg'}
+      {user_id: 1, food_id:1, caption:'Hawaiian Pizza Food Photo', imageUrl: 'https://www.jessicagavin.com/wp-content/uploads/2020/07/hawaiian-pizza-16-1200.jpg'}
     ], {});
   },
 

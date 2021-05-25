@@ -12,13 +12,12 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-      return queryInterface.bulkInsert('Foods', [
-        {name: 'Pizza'}
+    return queryInterface.bulkInsert('Additives', [
+      {food_id: 1, ingredient: "Pineapple"}
     ], {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Foods', null, {});
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

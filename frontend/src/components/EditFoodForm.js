@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFood, getPokemonTypes } from '../store/foods';
+import { updateFood } from '../store/foods';
 
 const EditFoodForm = ({ foods, hideForm }) => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const EditFoodForm = ({ foods, hideForm }) => {
           placeholder="Name"
           value={name}
           onChange={updateName} />
-        <button type="submit">Update Pokemon</button>
+        <button type="submit">Update Food</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>

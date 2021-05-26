@@ -1,4 +1,4 @@
-import { LOAD_ADDITIVES, REMOVE_ADDITIVE, ADD_ADDITIVE } from './additives';
+import { LOAD_ADDITIVES, REMOVE_ADDITIVE, ADD_ADDITIVE } from './additive';
 
 const LOAD = 'food/LOAD';
 const LOAD_TYPES = 'food/LOAD_TYPES';

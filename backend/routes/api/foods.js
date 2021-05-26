@@ -53,14 +53,14 @@ async function addItem(details, foodId) {
 
 router.get('/', asyncHandler(async function(_req, res) {
   const foods = await list();
-  return res.json(foods);
+  res.json(foods);
 }));
 
 router.post(
   '/',
   asyncHandler(async function (req, res) {
     const id = await create(req.body);
-    return res.redirect(`${req.baseUrl}/${id}`);
+    res.redirect(`${req.baseUrl}/${id}`);
   })
 );
 
@@ -69,25 +69,25 @@ router.put(
   asyncHandler(async function (req, res) {
     const id = await update(req.body);
     const food = await one(id);
-    return res.json(food);
+    res.json(food);
   })
 );
 
 router.get('/:id', asyncHandler(async function(req, res) {
   const food = await one(req.params.id);
-  return res.json(food);
+  res.json(food);
 }));
 
 router.get('/:id/additives', asyncHandler(async function(req, res) {
   const additives = await additivesByFoodId(req.params.id);
-  return res.json(additives);
+  res.json(additives);
 }));
 
 router.post(
   '/:id/additives',
   asyncHandler(async function(req, res) {
     const additive = await addItem(req.body, req.params.id);
-    return res.json(additive);
+    res.json(additive);
   })
 );
 

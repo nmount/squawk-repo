@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateAdditive } from '../store/additives';
+import { updateAdditive } from '../store/additive';
 
 const EditPokemonForm = ({ additiveId, hideForm }) => {
   const additive = useSelector(state => state.additives[additiveId]);

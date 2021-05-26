@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAdditive } from '../store/additive';
 
-const EditPokemonForm = ({ additiveId, hideForm }) => {
+const EditFoodForm = ({ additiveId, hideForm }) => {
   const additive = useSelector(state => state.additives[additiveId]);
   const dispatch = useDispatch();
 
@@ -44,4 +44,4 @@ const EditPokemonForm = ({ additiveId, hideForm }) => {
   );
 };
 
-export default EditPokemonForm;
+export default EditFoodForm;

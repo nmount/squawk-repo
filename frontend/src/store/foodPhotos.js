@@ -1,9 +1,9 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD = "foodPhoto/LOAD";
-const GET_ONE = "foodPhoto/LOAD_ONE";
-const ADD = "foodPhoto/ADD";
-const SEARCH = 'foodPhoto/SEARCH';
+const LOAD = "foodPhotos/LOAD";
+const GET_ONE = "foodPhotos/GET_ONE";
+const ADD = "foodPhotos/ADD";
+const SEARCH = 'foodPhotos/SEARCH';
 
 const load = (foodPhotos) => ({
   type: LOAD,
@@ -12,30 +12,32 @@ const load = (foodPhotos) => ({
 
 const getOne = (foodPhoto) => ({
   type: GET_ONE,
-  foodPhoto: foodPhoto,
+  foodPhoto,
 });
 
 const add = (foodPhoto) => ({
   type: ADD,
-  foodPhoto: foodPhoto,
+  foodPhoto,
 });
 
 const searchResult = (foodPhotos)=>({
   type:SEARCH,
-  foodPhotos:foodPhotos,
+  foodPhotos,
 })
 
 export const getSingleFoodPhoto = (id) => async (dispatch) => {
-  const res = await fetch(`/api/foodPhoto/${id}`);
+    console.log("singleFoodPHotoIDDD", id);
+  const res = await fetch(`/api/foodPhotos/${id}`);
 
   if (res.ok) {
     const foodPhoto = await res.json();
+    console.log("YOOOOOO", foodPhoto);
     dispatch(getOne(foodPhoto));
   }
 };
 
-export const getfoodPhotos = () => async (dispatch) => {
-  const res = await fetch("/api/foodPhoto");
+export const getFoodPhotos = () => async (dispatch) => {
+  const res = await fetch("/api/foodPhotos");
 
   if (res.ok) {
     const foodPhotos = await res.json();
@@ -43,9 +45,9 @@ export const getfoodPhotos = () => async (dispatch) => {
   }
 };
 
-export const addfoodPhoto = (data) => async (dispatch) => {
+export const addFoodPhoto = (data) => async (dispatch) => {
 
-  const res = await csrfFetch("/api/foodPhoto", {
+  const res = await csrfFetch("/api/foodPhotos", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -60,8 +62,8 @@ export const addfoodPhoto = (data) => async (dispatch) => {
   }
 };
 
-export const searchfoodPhoto =(searchContent)=>async dispatch=>{
-  const res = await fetch(`/api/foodPhoto/search/${searchContent}`)
+export const searchFoodPhoto = (searchContent) =>async dispatch=>{
+  const res = await fetch(`/api/foodPhotos/search/${searchContent}`)
   if(res.ok){
     const foodPhotos=await res.json()
     console.log(foodPhotos)
@@ -71,8 +73,9 @@ export const searchfoodPhoto =(searchContent)=>async dispatch=>{
 
 const initialState = {};
 
-export default function foodPhotoReducer(state = initialState, action) {
+export default function foodReducer(state = initialState, action) {
   let newState = {};
+  console.log("ACTION!!!!!!", action)
   switch (action.type) {
     case LOAD: {
       newState = {};
@@ -82,8 +85,11 @@ export default function foodPhotoReducer(state = initialState, action) {
       return newState;
     }
     case GET_ONE:
-      newState = {};
-      newState[action.foodPhoto.id] = action.foodPhoto;
+
+    //   newState[action.foodPhoto.id] = action.foodPhoto;
+    const foodPhoto = action.foodPhoto;
+    newState = {foodPhoto};
+    console.log("instate foodPhoto", foodPhoto);
       return newState;
     case ADD:
       newState = { ...state };

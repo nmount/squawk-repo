@@ -31,7 +31,7 @@ const FoodDetail = () => {
     )
   } else {
     content = (
-      <div className="pokemon-detail-lists">
+      <div className="food-detail-lists">
         <div>
           <h2>Items</h2>
           <table>
@@ -54,7 +54,7 @@ const FoodDetail = () => {
 
   return (
     <div className="food-detail">
-      <div className={`pokemon-detail-image-background`}>
+      <div className={`food-detail-image-background`}>
         <div>
           <h1 className="bigger">{food.name}</h1>
           {(!showEditFoodForm) && (

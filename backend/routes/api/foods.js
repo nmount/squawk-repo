@@ -1,17 +1,94 @@
 const express = require('express');
-const router = express.Router();
 const asyncHandler = require('express-async-handler');
-const { check, validationResult } = require("express-validator");
-const db = require('../../db/models');
+const { check, validationResult } = require('express-validator');
 
-const { Food } = db;
+const { Food, Additive } = require('../../db/models');
 
-// router.get('/', asyncHandler(async(req, res) => {
-//     const foods = await Food.findAll();
+const router = express.Router();
 
-//     res.render("foods", { foods });
-// }));
+async function list() {
+    return await Food.findAll();
+}
 
-router.get("/", function (req, res) {
-    res.send("Hello World!");
-  });
+async function create(details) {
+    let additives = [];
+    for (let i = 0; i < details.additives.length; i++) {
+        additives.push(details.additives[i]);
+    }
+    const food = await Food.create(additives, { include: ["additives"] });
+    return food.id;
+  }
+
+async function update(details) {
+    const id = details.id;
+    delete details.id;
+    await Food.update(
+      details,
+      {
+        where: { id },
+      }
+    );
+    return id;
+}
+
+async function one(id) {
+    return await Food.findByPk(id);
+}
+
+async function additivesByFoodId(foodId) {
+    return await Additive.findAll({
+      where: {
+        foodId,
+      },
+    });
+}
+
+async function addItem(details, foodId) {
+    const additive = await Additive.create({
+      ...details,
+      foodId,
+    });
+    return await Additive.findByPk(additive.id);
+  }
+
+router.get('/', asyncHandler(async function(_req, res) {
+  const foods = await list();
+  return res.json(foods);
+}));
+
+router.post(
+  '/',
+  asyncHandler(async function (req, res) {
+    const id = await create(req.body);
+    return res.redirect(`${req.baseUrl}/${id}`);
+  })
+);
+
+router.put(
+  '/:id',
+  asyncHandler(async function (req, res) {
+    const id = await update(req.body);
+    const food = await one(id);
+    return res.json(food);
+  })
+);
+
+router.get('/:id', asyncHandler(async function(req, res) {
+  const food = await one(req.params.id);
+  return res.json(food);
+}));
+
+router.get('/:id/additives', asyncHandler(async function(req, res) {
+  const additives = await additivesByFoodId(req.params.id);
+  return res.json(additives);
+}));
+
+router.post(
+  '/:id/additives',
+  asyncHandler(async function(req, res) {
+    const additive = await addItem(req.body, req.params.id);
+    return res.json(additive);
+  })
+);
+
+module.exports = router;

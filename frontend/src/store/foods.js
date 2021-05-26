@@ -81,7 +81,7 @@ export const getFood = () => async dispatch => {
 
 const initialState = {
   list: [],
-  // types: []
+  types: []
 };
 
 const sortList = (list) => {

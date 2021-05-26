@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createFood } from '../store/foods';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateFood, getPokemonTypes } from '../store/foods';
 
-const CreateFoodForm = ({ hideForm }) => {
+const EditFoodForm = ({ foods, hideForm }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [name, setName] = useState('');
+
+  const [name, setName] = useState(foods.name);
 
   const updateName = (e) => setName(e.target.value);
 
@@ -14,12 +13,12 @@ const CreateFoodForm = ({ hideForm }) => {
     e.preventDefault();
 
     const payload = {
-      name
+      ...foods,
+      name,
     };
 
-    const food = await dispatch(createFood(payload));
-    if (food) {
-      history.push(`/foods/${food.id}`);
+    const updatedFood = await dispatch(updateFood(payload));
+    if (updatedFood) {
       hideForm();
     }
   };
@@ -30,18 +29,18 @@ const CreateFoodForm = ({ hideForm }) => {
   };
 
   return (
-    <section className="new-form-holder centered middled">
+    <section className="edit-form-holder centered middled">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={updateName} />
-        <button type="submit">Create new Food</button>
+        <button type="submit">Update Pokemon</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>
   );
 };
 
-export default CreateFoodForm;
+export default EditFoodForm;

@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 
 import sessionReducer from './session';
 import foodReducer from './foodPhotos';
+import usersReducer from './users';
 // import additivesReducer from './additive';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  foodReducer,
+  foods: foodReducer,
+  users: usersReducer,
   // additivesReducer,
 });
 

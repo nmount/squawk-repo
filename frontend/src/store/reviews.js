@@ -41,15 +41,23 @@ export default function reviewReducer(state = {}, action) {
   let newState = {};
   switch (action.type) {
     case LOAD:
-      newState = {};
-      action.reviews.forEach((review) => {
-        newState[review.id] = review;
-      });
-      return newState;
+        newState = {};
+        action.reviews.forEach((review) => {
+            newState[review.id] = review;
+        });
+        return newState;
     case CREATE:
-      newState = { ...state };
-      newState[action.review.id] = action.review;
-      return newState;
+        newState = { ...state };
+        newState[action.review.id] = action.review;
+        return newState;
+    // case UPDATE:
+    //     newState = {...state,
+    //     [action.foodPhoto.id]: action.foodPhoto};
+    //     return newState;
+    // case REMOVE:
+    //     const newState = {...state};
+    //     delete newState[action.foodPhotoId];
+    //     return newState;
     default:
       return state;
   }

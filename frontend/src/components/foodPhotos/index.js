@@ -1,18 +1,18 @@
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getFoodPhotos } from '../../store/foodPhotos';
+import {deletefoodPhoto} from '../../store/foodPhotos';
 import img from './img/img.png'
 
 const FoodPhotos = () =>{
     const dispatch = useDispatch();
 
-
     useEffect(()=>{
         dispatch(getFoodPhotos())
     },[dispatch])
 
-    const foodPhotos = useSelector((state) => Object.values(state.foodReducer));
+    const foodPhotos = useSelector((state) => Object.values(state.foods));
 
     if(!foodPhotos) return null;
     else {
@@ -20,9 +20,13 @@ const FoodPhotos = () =>{
       <div className="foodPhotos">
         <div className="foodPhotoHub">
           {foodPhotos?.map((photo) => (
-            <Link key={photo} to={`/foodPhotos/${photo.id}`}>
-              <img className="photo" src={photo.imageUrl} />
-            </Link>
+            <div className="photoMap">
+
+              <Link key={photo} to={`/foodPhotos/${photo.id}`}>
+                <img className="photo" src={photo.imageUrl} />
+              </Link>
+              <button value={photo.id} onClick={e => {dispatch(deletefoodPhoto(photo.id))}}>Delete</button>
+            </div>
           ))}
         </div>
         <Link to="/add">

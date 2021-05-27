@@ -69,7 +69,7 @@ export const createFoodPhoto = (data) => async (dispatch) => {
 };
 
 export const updateFoodPhoto= data => async dispatch => {
-  const response = await fetch(`/api/foodPhotos/${data.id}`, {
+  const response = await csrfFetch(`/api/foodPhotos/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',
@@ -85,13 +85,14 @@ export const updateFoodPhoto= data => async dispatch => {
 };
 
 export const deletefoodPhoto = foodPhotoId => async dispatch => {
-  const response = await fetch(`/api/foodPhoto/${foodPhotoId}`, {
+  const response = await csrfFetch(`/api/foodPhotos/${foodPhotoId}`, {
     method: 'delete',
   });
+  console.log('food for bitches ID', foodPhotoId);
 
   if (response.ok) {
-    const foodPhoto = await response.json();
-    dispatch(remove(foodPhoto.id));
+    // const foodPhoto = await response.json();
+    dispatch(remove(foodPhotoId));
   }
 };
 
@@ -120,7 +121,7 @@ export default function foodReducer(state = {}, action) {
       return newState;
     }
     case REMOVE: {
-      const newState = {...state};
+      newState = {...state};
       delete newState[action.foodPhotoId];
       return newState;
     }

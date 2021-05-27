@@ -2,21 +2,24 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createFoodPhoto, getFoodPhotos } from '../store/foodPhotos';
 import { useHistory } from 'react-router-dom';
+import { loadUsers } from '../store/users';
 
 const CreateFoodPhotoForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [imageUrl, setImageUrl] = useState('');
   const [caption, setCaption] = useState('');
-  const userId = useSelector((state) => state.session.user.id);
 
   useEffect(() => {
     dispatch(getFoodPhotos());
+    dispatch(loadUsers());
   }, [dispatch]);
+
+  const userId = useSelector((state) => state.session.user.id);
 
   const onSubmit = async e => {
     e.preventDefault();
-    const data = {imageUrl, userId, caption}
+    const data = {imageUrl, userId, caption};
 
     await dispatch(createFoodPhoto(data));
     history.replace('/foodPhotos');

@@ -6,7 +6,7 @@ import foodReducer, {getSingleFoodPhoto} from "../../store/foodPhotos";
 function FoodPhotoShow() {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const foodPhotos = useSelector((state) => state?.foodReducer.foodPhoto);
+    const foodPhotos = useSelector((state) => state?.foods.foodPhoto);
     // const foodPhotoCaption = useSelector((state) => state?.foodReducer)
 
 

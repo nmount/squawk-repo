@@ -22,12 +22,15 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
           <Route path="/" exact>
             {user[0] && <FoodPhotos />}
             <Home />
+          </Route>
+          <Route path ="/foodPhotos/create">
+            <CreateFoodPhotoForm />
+          </Route>
+          <Route path="/signup">
+            <SignupFormPage />
           </Route>
           <Route path ="/foodPhotos/:id" exact>
             <FoodPhotoShow />
@@ -37,9 +40,6 @@ function App() {
           </Route>
           <Route path ="/foodPhotos/:id/review" exact>
             <Reviews />
-          </Route>
-          <Route path ="/foodPhotos/create">
-            <CreateFoodPhotoForm />
           </Route>
         </Switch>
       )}

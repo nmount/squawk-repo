@@ -12,9 +12,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Users" }
       },
-      food_id: {
+      foodPhoto_id: {
         type: Sequelize.INTEGER,
-        references: { model: "Foods" }
+        references: { model: "FoodPhotos" }
       },
       body: {
         type: Sequelize.STRING

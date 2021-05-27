@@ -5,6 +5,7 @@ const usersRouter = require('./users.js');
 const foodsRouter = require('./foods.js');
 const additivesRouter = require('./additives.js');
 const foodPhotosRouter = require('./foodPhotos.js');
+const reviewsRouter = require('./reviews.js');
 
 
 
@@ -19,5 +20,6 @@ router.use('/users', usersRouter);
 router.use('/foods', foodsRouter);
 router.use('/additives', additivesRouter);
 router.use('/foodPhotos', foodPhotosRouter);
+router.use('/reviews', reviewsRouter);
 
 module.exports = router;

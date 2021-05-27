@@ -12,15 +12,14 @@ const FoodPhotos = () =>{
         dispatch(getFoodPhotos())
     },[dispatch])
 
-
-    const foodPhotos = useSelector((state) => state.foodReducer);
+    const foodPhotos = useSelector((state) => Object.values(state.foodReducer));
 
     if(!foodPhotos) return null;
     else {
     return (
       <div className="foodPhotos">
         <div className="foodPhotoHub">
-          {foodPhotos.map((photo) => (
+          {foodPhotos?.map((photo) => (
             <Link key={photo} to={`/foodPhotos/${photo.id}`}>
               <img className="photo" src={photo.imageUrl} />
             </Link>

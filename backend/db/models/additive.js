@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Additive.associate = function(models) {
     // associations can be defined here
-    Additive.belongsTo(models.Food, {foreignKey: 'food_id'});
+    // Additive.belongsTo(models.Food, {foreignKey: 'food_id'});
   };
   return Additive;
 };

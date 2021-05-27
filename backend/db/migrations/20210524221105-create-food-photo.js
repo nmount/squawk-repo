@@ -12,10 +12,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Users" }
       },
-      food_id: {
-        type: Sequelize.INTEGER,
-        references: { model: "Foods" }
-      },
+      // review_id: {
+      //   type: Sequelize.INTEGER,
+      //   references: { model: "Reviews" }
+      // },
       imageUrl: {
         type: Sequelize.STRING
       },

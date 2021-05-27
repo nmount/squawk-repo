@@ -26,12 +26,11 @@ const searchResult = (foodPhotos)=>({
 })
 
 export const getSingleFoodPhoto = (id) => async (dispatch) => {
-    console.log("singleFoodPHotoIDDD", id);
   const res = await fetch(`/api/foodPhotos/${id}`);
 
   if (res.ok) {
     const foodPhoto = await res.json();
-    console.log("YOOOOOO", foodPhoto);
+    // console.log("YOOOOOO", foodPhoto);
     dispatch(getOne(foodPhoto));
   }
 };
@@ -75,7 +74,6 @@ const initialState = {};
 
 export default function foodReducer(state = initialState, action) {
   let newState = {};
-//   console.log("ACTION!!!!!!", action)
   switch (action.type) {
     case LOAD: {
       newState = {};

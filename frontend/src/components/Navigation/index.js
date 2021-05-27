@@ -26,6 +26,9 @@ function Navigation({ isLoaded }) {
         <Link className="links" to="/signup">
           Sign Up
         </Link>
+        <Link className="links" to="/foodPhotos">
+          Foods Page
+        </Link>
       </>
     );
   }

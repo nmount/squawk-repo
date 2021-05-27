@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAdditives } from "../store/additives";
+import { getAdditives } from "../store/additive";
 
 const FoodAdditives = ({ food, setEditAdditiveId }) => {
   const additives = useSelector((state) => {

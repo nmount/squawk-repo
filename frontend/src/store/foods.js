@@ -15,7 +15,7 @@ const load = list => ({
 // });
 
 const addOneFood = food => ({
-  // type: ADD_ONE,
+  type: ADD_ONE,
   food,
 });
 

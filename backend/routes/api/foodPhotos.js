@@ -13,7 +13,6 @@ router.get('/', asyncHandler(async(req,res)=>{
 
 router.get('/:id',asyncHandler(async(req,res)=>{
     const id = req.params.id;
-
     const foodPhoto= await FoodPhoto.findByPk(id)
     res.json(foodPhoto)
 }))
@@ -22,7 +21,7 @@ router.post('/',asyncHandler(async(req,res)=>{
 
     let { imageUrl, user_id, food_id, caption } = req.body;
 
-    food_id++;
+    food_id;
     const newPhoto=await FoodPhoto.create({
       imageUrl,
       user_id,
@@ -41,7 +40,7 @@ router.get('/search/:searchContent', asyncHandler(async(req,res)=>{
             }
         }
     })
-    res.json(foodPhotos)
+    res.json(foodPhotos);
 }))
 
 module.exports = router;

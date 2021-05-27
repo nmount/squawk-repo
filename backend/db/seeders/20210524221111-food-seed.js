@@ -13,7 +13,11 @@ module.exports = {
       }], {});
     */
       return queryInterface.bulkInsert('Foods', [
-        {name: 'Pizza'}
+        {name: 'Hawaiian Pizza'},
+        {name: 'Everything Pizza'},
+        {name: 'Fettuccine Alfredo'},
+        {name: 'Maki Sushi'},
+        {name: 'Flan'}
     ], {});
   },
 

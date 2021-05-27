@@ -7,7 +7,7 @@ const SEARCH = 'foodPhotos/SEARCH';
 
 const load = (foodPhotos) => ({
   type: LOAD,
-  foodPhotos: foodPhotos,
+  foodPhotos: foodPhotos
 });
 
 const getOne = (foodPhoto) => ({
@@ -75,21 +75,19 @@ const initialState = {};
 
 export default function foodReducer(state = initialState, action) {
   let newState = {};
-  console.log("ACTION!!!!!!", action)
+//   console.log("ACTION!!!!!!", action)
   switch (action.type) {
     case LOAD: {
       newState = {};
       action.foodPhotos.forEach((foodPhoto) => {
         newState[foodPhoto.id] = foodPhoto;
       });
-      return newState;
+      return action.foodPhotos;
     }
     case GET_ONE:
-
     //   newState[action.foodPhoto.id] = action.foodPhoto;
     const foodPhoto = action.foodPhoto;
     newState = {foodPhoto};
-    console.log("instate foodPhoto", foodPhoto);
       return newState;
     case ADD:
       newState = { ...state };

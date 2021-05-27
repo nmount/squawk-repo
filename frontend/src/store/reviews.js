@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD = "comment/LOAD";
-const CREATE = "comment/CREATE";
+const LOAD = "review/LOAD";
+const CREATE = "review/CREATE";
 
 const load = (reviews) => ({
   type: LOAD,

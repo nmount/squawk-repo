@@ -3,8 +3,8 @@ import { csrfFetch } from "./csrf";
 const LOAD = "foodPhotos/LOAD";
 const GET_ONE = "foodPhotos/GET_ONE";
 const ADD = "foodPhotos/ADD";
-const SEARCH = 'foodPhotos/SEARCH';
-
+const REMOVE = "foodPhotos/REMOVE";
+const UPDATE = "foodPhotos/UPDATE";
 const load = (foodPhotos) => ({
   type: LOAD,
   foodPhotos: foodPhotos
@@ -20,10 +20,17 @@ const add = (foodPhoto) => ({
   foodPhoto,
 });
 
-const searchResult = (foodPhotos)=>({
-  type:SEARCH,
-  foodPhotos,
+const remove = (foodPhotoId) => ({
+  type: REMOVE,
+  foodPhotoId,
+});
+
+const update = (foodPhoto) => ({
+  type: UPDATE,
+  foodPhoto,
 })
+
+
 
 export const getSingleFoodPhoto = (id) => async (dispatch) => {
   const res = await fetch(`/api/foodPhotos/${id}`);
@@ -44,7 +51,7 @@ export const getFoodPhotos = () => async (dispatch) => {
   }
 };
 
-export const addFoodPhoto = (data) => async (dispatch) => {
+export const createFoodPhoto = (data) => async (dispatch) => {
 
   const res = await csrfFetch("/api/foodPhotos", {
     method: "post",
@@ -61,42 +68,62 @@ export const addFoodPhoto = (data) => async (dispatch) => {
   }
 };
 
-export const searchFoodPhoto = (searchContent) =>async dispatch=>{
-  const res = await fetch(`/api/foodPhotos/search/${searchContent}`)
-  if(res.ok){
-    const foodPhotos=await res.json()
-    console.log(foodPhotos)
-    dispatch(searchResult(foodPhotos))
+export const updateFoodPhoto= data => async dispatch => {
+  const response = await fetch(`/api/foodPhotos/${data.id}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    const foodPhoto = await response.json();
+    dispatch(update(foodPhoto));
+    return foodPhoto;
   }
-}
+};
 
-const initialState = {};
+export const deletefoodPhoto = foodPhotoId => async dispatch => {
+  const response = await fetch(`/api/foodPhoto/${foodPhotoId}`, {
+    method: 'delete',
+  });
 
-export default function foodReducer(state = initialState, action) {
+  if (response.ok) {
+    const foodPhoto = await response.json();
+    dispatch(remove(foodPhoto.id));
+  }
+};
+
+export default function foodReducer(state = {}, action) {
   let newState = {};
   switch (action.type) {
-    case LOAD: {
-      newState = {};
+    case LOAD:{
       action.foodPhotos.forEach((foodPhoto) => {
         newState[foodPhoto.id] = foodPhoto;
       });
       return action.foodPhotos;
     }
-    case GET_ONE:
+    case GET_ONE: {
     //   newState[action.foodPhoto.id] = action.foodPhoto;
-    const foodPhoto = action.foodPhoto;
-    newState = {foodPhoto};
-      return newState;
-    case ADD:
+      const foodPhoto = action.foodPhoto;
+      return {foodPhoto};
+    }
+    case ADD: {
       newState = { ...state };
       newState[action.foodPhoto.id] = action.foodPhoto;
       return newState;
-    case SEARCH:
-      newState={};
-      action.foodPhotos.forEach((foodPhoto) => {
-        newState[foodPhoto.id] = foodPhoto;
-      });
+    }
+    case UPDATE: {
+      newState = {...state,
+        [action.foodPhoto.id]: action.foodPhoto};
       return newState;
+    }
+    case REMOVE: {
+      const newState = {...state};
+      delete newState[action.foodPhotoId];
+      return newState;
+    }
     default:
       return state;
   }

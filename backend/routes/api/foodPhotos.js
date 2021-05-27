@@ -19,28 +19,18 @@ router.get('/:id',asyncHandler(async(req,res)=>{
 
 router.post('/',asyncHandler(async(req,res)=>{
 
-    let { imageUrl, user_id, food_id, caption } = req.body;
+    let { imageUrl, user_id, caption } = req.body;
 
-    food_id;
     const newPhoto=await FoodPhoto.create({
       imageUrl,
       user_id,
-      food_id,
       caption,
     });
     res.json(newPhoto)
 }))
 
-router.get('/search/:searchContent', asyncHandler(async(req,res)=>{
-    const searchContent = req.params.searchContent;
-    const foodPhotos=await FoodPhoto.findAll({
-        where:{
-            caption:{
-                [Op.substring]:searchContent
-            }
-        }
-    })
-    res.json(foodPhotos);
-}))
+// router.delete('/:foodPhotoId', asyncHandler(req, res) => {
+
+// })
 
 module.exports = router;

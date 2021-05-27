@@ -8,6 +8,7 @@ import Home from "./components/homePage"
 import FoodPhotoShow from "./components/foodPhotoShow";
 import FoodPhotos from "./components/foodPhotos";
 import Reviews from "./components/reviews";
+import CreateFoodPhotoForm from './components/CreateFoodPhotoForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path ="/foodPhotos/:id/review" exact>
             <Reviews />
+          </Route>
+          <Route path ="/foodPhotos/create">
+            <CreateFoodPhotoForm />
           </Route>
         </Switch>
       )}

@@ -21,7 +21,7 @@ export default function Reviews() {
     const data={
       newReview,userId,id
     }
-    let submitCommentSuccess = await dispatch(submitReview(data));
+    await dispatch(submitReview(data));
     setNewReview('')
   }
   return (

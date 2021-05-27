@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { useSelector , useDispatch} from "react-redux";
 import ProfileButton from "./ProfileButton";
 // import styles from "./Navigation.css";
-import {searchFoodPhoto} from '../../store/foodPhotos';
+// import {searchFoodPhoto} from '../../store/foodPhotos';
 import { useHistory } from "react-router-dom";
 import search from './image/search.png';
 
 
 function Navigation({ isLoaded }) {
-  const [searchContent, setSearchContent] = useState("");
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -32,11 +31,11 @@ function Navigation({ isLoaded }) {
       </>
     );
   }
-  const handleClick=async(e)=>{
-    e.preventDefault();
-    await dispatch(searchFoodPhoto(searchContent))
-    history.push('/searchResult')
-  }
+  // const handleClick=async(e)=>{
+  //   e.preventDefault();
+  //   await dispatch(searchFoodPhoto(searchContent))
+  //   history.push('/searchResult')
+  // }
 
   return (
     <ul className="navBar">
@@ -44,7 +43,7 @@ function Navigation({ isLoaded }) {
         <Link className="links" exact to="/">
           Squawk &nbsp;
         </Link>
-        <span className='search'>
+        {/* <span className='search'>
           <input
             type="text"
             name="searchContent"
@@ -59,7 +58,7 @@ function Navigation({ isLoaded }) {
             disabled={searchContent === ""}
             onClick={handleClick}
           ><img className='searchImage' src={`${search}`} /></button>
-        </span>
+        </span> */}
 
         {isLoaded && sessionLinks}
       </li>

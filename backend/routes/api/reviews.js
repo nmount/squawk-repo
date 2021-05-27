@@ -4,6 +4,19 @@ const router = express.Router();
 const {Review} = require('../../db/models');
 
 
+
+router.post(
+    "/:id(\\d+)/review",
+    asyncHandler(async (req, res) => {
+        const { commentArea } = req.body;
+        await Review.create({ review: commentArea, userId: res.locals.user.id, foodPhotoId: req.params.id});
+        res.redirect(`/comics/${req.params.id}`);
+    })
+);
+
+
+
+
 router.get('/:foodPhotoId',asyncHandler(async(req,res)=>{
     const foodPhotoId=req.params.foodPhotoId;
 
@@ -17,9 +30,9 @@ router.post('/:foodPhotoId',asyncHandler(async(req,res)=>{
     const foodPhotoId=req.params.foodPhotoId
     const {newBody,user_id,id}=req.body;
     const review=newBody;
-    const body = await Review.create({review,user_id,foodPhotoId})
+    const body = await Review.create({review,user_id,foodPhotoId});
 
-    return res.json(body)
+    return res.json(body);
 
 }))
 

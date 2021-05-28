@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getFoodPhotos } from '../../store/foodPhotos';
 import {deletefoodPhoto} from '../../store/foodPhotos';
 import img from './img/img.png'
+import './foodPhotos.css';
 
 const FoodPhotos = () =>{
     const dispatch = useDispatch();
@@ -18,12 +19,11 @@ const FoodPhotos = () =>{
     else {
     return (
       <div className="foodPhotos">
-        <div className="foodPhotoHub">
+        <div className="cardContainer">
           {foodPhotos?.map((photo) => (
             <div className="photoMap">
-
               <Link key={photo} to={`/foodPhotos/${photo.id}`}>
-                <img className="photo" src={photo.imageUrl} />
+                <img className="card" src={photo.imageUrl} />
               </Link>
               <button value={photo.id} onClick={e => {dispatch(deletefoodPhoto(photo.id))}}>Delete</button>
             </div>

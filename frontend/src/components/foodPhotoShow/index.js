@@ -17,7 +17,7 @@ function FoodPhotoShow() {
     if (!foodPhotos) return null;
     return (
       <div className='container'>
-        <img className="selectedPhoto" src={foodPhotos?.imageUrl} />
+        <img className="card" src={foodPhotos?.imageUrl} />
       </div>
     );
 };

@@ -14,7 +14,7 @@ function FoodPhotoShow() {
       dispatch(getSingleFoodPhoto(id))
     },[dispatch])
 
-
+    if (!foodPhotos) return null;
     return (
       <div className='container'>
         <img className="selectedPhoto" src={foodPhotos?.imageUrl} />

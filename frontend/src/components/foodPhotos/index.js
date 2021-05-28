@@ -11,10 +11,10 @@ const FoodPhotos = () =>{
     useEffect(()=>{
         dispatch(getFoodPhotos())
     },[dispatch])
+    console.log('bomdiggtybrashsky');
+    const foodPhotos = useSelector(state => state.foods);
 
-    const foodPhotos = useSelector((state) => Object.values(state.foods));
-
-    if(!foodPhotos) return null;
+    if(!foodPhotos.length) return null;
     else {
     return (
       <div className="foodPhotos">

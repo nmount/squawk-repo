@@ -31,7 +31,6 @@ router.post('/',asyncHandler(async(req,res)=>{
 router.delete('/:id', asyncHandler(async(req,res)=> {
     const foodPhotoId = req.params.id;
     await FoodPhoto.destroy({where: {id:foodPhotoId}});
-    res.redirect('/foodPhotos');
 }))
 
 // router.delete('/:foodPhotoId', asyncHandler(req, res) => {

@@ -88,7 +88,6 @@ export const deletefoodPhoto = foodPhotoId => async dispatch => {
   const response = await csrfFetch(`/api/foodPhotos/${foodPhotoId}`, {
     method: 'delete',
   });
-  console.log('food for bitches ID', foodPhotoId);
 
   if (response.ok) {
     // const foodPhoto = await response.json();

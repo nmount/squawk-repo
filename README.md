@@ -13,3 +13,8 @@ Allow reviews and ratings on foods from signed in users.
 Allow users to see reviews and ratings left by other users.
 4. Search / filters
 Search and filter foods by keywords and categories
+
+
+
+Database Schema
+https://dbdiagram.io/d/60a82046b29a09603d15ff4d
